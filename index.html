@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Template Creator</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="container">
+        <div class="main-layout">
+            <div class="left-column">
+                <div class="form-section">
+                    <h2>Load Configuration</h2>
+                    <div class="load-container">
+                        <select id="saved_configs" class="saved-configs-select">
+                            <option value="">Select a saved configuration...</option>
+                        </select>
+                        <button id="applyButton" class="secondary-button">Apply</button>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-section">
+                        <h2>Basic Information</h2>
+                        <div class="form-group">
+                            <label for="title_name">Publication/Website Name:</label>
+                            <input type="text" id="title_name" name="title_name" placeholder="Enter publication name">
+                        </div>
+                        <div class="form-group">
+                            <label for="title_url">Website URL:</label>
+                            <input type="url" id="title_url" name="title_url" placeholder="https://example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="title_domain_name">Domain Name:</label>
+                            <input type="text" id="title_domain_name" name="title_domain_name" placeholder="example.com">
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h2>Contact Information</h2>
+                        <div class="form-group">
+                            <label for="customer_service_email">Customer Service Email:</label>
+                            <input type="email" id="customer_service_email" name="customer_service_email" placeholder="support@example.com">
+                        </div>
+                        <div class="form-group">
+                            <label for="address">Physical Address:</label>
+                            <textarea id="address" name="address" placeholder="Enter complete address"></textarea>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-row">
+                    <div class="form-section">
+                        <h2>Social Media & Links</h2>
+                        <div class="form-group">
+                            <label for="logo_url">Logo URL:</label>
+                            <input type="url" id="logo_url" name="logo_url" placeholder="https://example.com/logo.png">
+                        </div>
+                        <div class="form-group">
+                            <label for="twitter_url">Twitter Profile URL:</label>
+                            <input type="url" id="twitter_url" name="twitter_url" placeholder="https://twitter.com/username">
+                        </div>
+                        <div class="form-group">
+                            <label for="facebook_url">Facebook Profile URL:</label>
+                            <input type="url" id="facebook_url" name="facebook_url" placeholder="https://facebook.com/username">
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h2>Important Pages</h2>
+                        <div class="form-group">
+                            <label for="contact_url">Contact Page URL:</label>
+                            <input type="url" id="contact_url" name="contact_url" placeholder="https://example.com/contact">
+                        </div>
+                        <div class="form-group">
+                            <label for="privacy_url">Privacy Policy URL:</label>
+                            <input type="url" id="privacy_url" name="privacy_url" placeholder="https://example.com/privacy">
+                        </div>
+                        <div class="form-group">
+                            <label for="terms_url">Terms of Service URL:</label>
+                            <input type="url" id="terms_url" name="terms_url" placeholder="https://example.com/terms">
+                        </div>
+                        <div class="form-group">
+                            <label for="subscribe_page_link">Subscription Page URL:</label>
+                            <input type="url" id="subscribe_page_link" name="subscribe_page_link" placeholder="https://example.com/subscribe">
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form-section">
+                    <h2>Save Configuration</h2>
+                    <div class="save-container">
+                        <div class="form-group" style="margin-bottom: 0; flex: 1;">
+                            <input type="text" id="config_name" name="config_name" placeholder="Enter a name for this configuration">
+                        </div>
+                        <button id="saveButton" class="secondary-button">Save Configuration</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="right-column">
+                <div class="form-section">
+                    <h2>Template Selection</h2>
+                    <div class="template-selection-input-wrapper">
+                        <div class="form-group">
+                            <select id="template" name="template">
+                                <option value="">Select a template...</option>
+                                <option value="AbandonedCart.html">Abandoned Cart</option>
+                                <option value="CancellationConfirmation.html">Cancellation Confirmation</option>
+                                <option value="CardExpirationNotification.html">Card Expiration Notification</option>
+                                <option value="Footer.html">Footer Component</option>
+                                <option value="GiftPurchaseConfirmation.html">Gift Purchase Confirmation</option>
+                                <option value="GiftRedeemedConfirmation.html">Gift Redeemed Confirmation</option>
+                                <option value="GracePeriodNotification.html">Grace Period Notification</option>
+                                <option value="GracePeriodFinishedNotification.html">Grace Period Finished Notification</option>
+                                <option value="Header.html">Header Component</option>
+                                <option value="MinusFourteenDayRenewalNotification.html">14 Days Before Renewal</option>
+                                <option value="MinusFourteenDayManualRenewalNotification.html">14 Days Before Manual Renewal</option>
+                                <option value="MinusSevenDayRenewalNotification.html">7 Days Before Renewal</option>
+                                <option value="MinusSevenDayManualRenewalNotification.html">7 Days Before Manual Renewal</option>
+                                <option value="PurchaseConfirmation.html">Purchase Confirmation</option>
+                                <option value="RefundConfirmation.html">Refund Confirmation</option>
+                                <option value="RefundAndCancellationConfirmation.html">Refund and Cancellation Confirmation</option>
+                                <option value="RegistrationConfirmation.html">Registration Confirmation</option>
+                                <option value="RenewalConfirmation.html">Renewal Confirmation</option>
+                                <option value="ResetPassword.html">Reset Password</option>
+                                <option value="ResetPasswordSocial.html">Reset Password Social</option>
+                                <option value="UpgradeConfirmation.html">Upgrade Confirmation</option>
+                            </select>
+                        </div>
+                        <div class="button-container">
+                            <button id="processButton">Process Template</button>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="preview" class="preview-container">
+                    <h2>Preview</h2>
+                    <div id="previewContent"></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="script.js"></script>
+</body>
+</html> 

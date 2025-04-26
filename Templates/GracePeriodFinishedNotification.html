@@ -1,0 +1,88 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <!-- CSS Styling here -->
+       <style>
+            .fp-et-wrap {
+                margin-left: auto;
+                margin-right: auto;
+                max-width: 600px;
+            }
+            .fp-et-content {
+                margin-bottom: 30px;
+                font-size: 15px;
+                border-bottom: 1px solid lightgray;
+                padding-bottom: 10px;
+            }
+            .fp-et-content p {
+                margin-bottom: 20px !important;
+                font-size: 13px;
+                mso-line-height-rule: exactly;
+                line-height: 24px;
+                font-family: Helvetica Neue, Arial, sans-serif;
+            }
+            .fp-subscription-details {
+                margin-bottom: 20px !important;
+            }
+            .fp-subscription-details div {
+                display: flex;
+            }
+            .fp-subscription-details div p {
+                width: 150px;
+                margin-left: 20px;
+                margin-bottom: 5px !important;
+                margin-top: 0px;
+            }
+            .fp-subscription-details div span {
+                font-size: 13px;
+                mso-line-height-rule: exactly;
+                line-height: 24px;
+                font-family: Helvetica Neue, Arial, sans-serif;
+                font-weight: bold;
+            }
+            .fp-et-content div p span {
+                margin-left: 20px;
+            }
+            .fp-et-content p a {
+                color: #308ac5 !important;
+                text-decoration: underline !important;
+            }
+            #fp-email-within{
+                 margin: 0px 0px 20px 20px;
+                 border: 1px solid lightgrey;
+                 padding: 15px 15px 0px 15px;
+                 border-radius: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="fp-et-wrap">
+
+>>Header<<
+
+          <div class="fp-et-content">
+              <p><strong>Dear >>Customer.Name<< </strong>,</p>
+              <p>We couldn't charge your subscription renewal payment. This means you will no longer have access to premium articles and all the other features of your subscription.</p>
+              <p>If you'd like to reactivate your subscription, you can subscribe online again <a target="_blank" href="[ph]title_url[/ph]/">here</a>.</p>
+              <p>Your subscription details:</p>
+              <div class="fp-subscription-details">
+                <div><p>Your subscriber ID:</p><span>>>Customer.Email<<</span></div>
+                <div><p>Subscription starts:</p><span>>>Purchase.StartAt<<</span></div>
+                <div><p>Subscription name:</p><span>>>Price.Name<< Paid >>Purchase.Frequency<<</span></div>
+                <div><p>First payment Date:</p><span>>>Purchase.OriginalStartAtDate<<</span></div>
+                <div><p>First payment Cost:</p><span>>>Purchase.Price<<</span></div>
+                <div><p>Next payment Date:</p><span>>>Purchase.FinishAtDate<<</span></div>
+                <div><p>Subscription Payments:</p><span>>>Purchase.RenewablePrice<< charged >>Purchase.Frequency<<</span></div>
+              </div>
+                <p>Regards,</p>
+
+            <p>[ph]title_name[/ph] Team.</p>
+
+
+            </div>
+
+ >>Footer<<
+
+        </div>
+    </body>
+</html>

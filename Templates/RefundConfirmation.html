@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <!-- CSS Styling here -->
+       <style>
+            .fp-et-wrap {
+                margin-left: auto;
+                margin-right: auto;
+                max-width: 600px;
+            }
+            .fp-et-content {
+                margin-bottom: 30px;
+                font-size: 15px;
+                border-bottom: 1px solid lightgray;
+                padding-bottom: 10px;
+            }
+            .fp-et-content p {
+                margin-bottom: 20px !important;
+                font-size: 13px;
+                mso-line-height-rule: exactly;
+                line-height: 24px;
+                font-family: Helvetica Neue, Arial, sans-serif;
+            }
+            .fp-subscription-details {
+                margin-bottom: 20px !important;
+            }
+            .fp-subscription-details div {
+                display: flex;
+            }
+            .fp-subscription-details div p {
+                width: 150px;
+                margin-left: 20px;
+                margin-bottom: 5px !important;
+                margin-top: 0px;
+            }
+            .fp-subscription-details div span {
+                font-size: 13px;
+                mso-line-height-rule: exactly;
+                line-height: 24px;
+                font-family: Helvetica Neue, Arial, sans-serif;
+                font-weight: bold;
+            }
+            .fp-et-content div p span {
+                margin-left: 20px;
+            }
+            .fp-et-content p a {
+                color: #308ac5 !important;
+                text-decoration: underline !important;
+            }
+            #fp-email-within{
+                 margin: 0px 0px 20px 20px;
+                 border: 1px solid lightgrey;
+                 padding: 15px 15px 0px 15px;
+                 border-radius: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="fp-et-wrap">
+
+>>Header<<
+
+           <div class="fp-et-content">
+                <p><strong>Dear >>Customer.Name<< </strong>,</p>
+                <p>Your payment card has been credited by >>Refund.Amount<<. Please allow 3 to 5 working days for the transaction to be processed.</p>
+                <p>Your subscription details:</p>
+                <div class="fp-subscription-details">
+                    <div>
+                        <p>Your subscriber ID:</p>
+                        <span>>>Customer.Email<<</span>
+                    </div>
+                    <div>
+                        <p>Subscription Name:</p>
+                        <span>>>Price.Name<< Paid >>Purchase.Frequency<<</span>
+                    </div>
+                    <div>
+                        <p>Next payment Date:</p>
+                        <span>>>Purchase.FinishAtDate<<</span>
+                    </div>
+                    <div>
+                        <p>Subscription Payments:</p>
+                        <span>>>Purchase.RenewablePrice<< charged >>Purchase.Frequency<<</span>
+                    </div>
+                </div>
+                <p>Regards,</p>
+
+            <p>[ph]title_name[/ph] Team.</p>
+
+
+            </div>
+
+ >>Footer<<
+
+        </div>
+    </body>
+</html>

@@ -1,0 +1,85 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <!-- CSS Styling here -->
+       <style>
+            .fp-et-wrap {
+                margin-left: auto;
+                margin-right: auto;
+                max-width: 600px;
+            }
+            .fp-et-content {
+                margin-bottom: 30px;
+                font-size: 15px;
+                border-bottom: 1px solid lightgray;
+                padding-bottom: 10px;
+            }
+            .fp-et-content p {
+                margin-bottom: 20px !important;
+                font-size: 13px;
+                mso-line-height-rule: exactly;
+                line-height: 24px;
+                font-family: Helvetica Neue, Arial, sans-serif;
+            }
+            .fp-subscription-details {
+                margin-bottom: 20px !important;
+            }
+            .fp-subscription-details div {
+                display: flex;
+            }
+            .fp-subscription-details div p {
+                width: 150px;
+                margin-left: 20px;
+                margin-bottom: 5px !important;
+                margin-top: 0px;
+            }
+            .fp-subscription-details div span {
+                font-size: 13px;
+                mso-line-height-rule: exactly;
+                line-height: 24px;
+                font-family: Helvetica Neue, Arial, sans-serif;
+                font-weight: bold;
+            }
+            .fp-et-content div p span {
+                margin-left: 20px;
+            }
+            .fp-et-content p a {
+                color: #308ac5 !important;
+                text-decoration: underline !important;
+            }
+            #fp-email-within{
+                 margin: 0px 0px 20px 20px;
+                 border: 1px solid lightgrey;
+                 padding: 15px 15px 0px 15px;
+                 border-radius: 10px;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="fp-et-wrap">
+
+>>Header<<
+
+           <div class="fp-et-content">
+            <p><strong>Dear >>Customer.Name<< </strong>,</p>
+            <p>Congratulations! You’ve bought a Gift Subscription for someone!</p>
+            <p>Just forward them the email below so they can activate their subscription using their unique subscriber code.</p>
+            <div id="fp-email-within">
+                   <p>Congratulations!</p>
+                   <p>You’ve been bought a subscription for [ph]title_name[/ph].</p>
+                   <p>It gives you unlimited access to our Premium content for a year.</p>
+<p style="font-weight:bold; margin-top: 35px;">To get access to the Premium content</p>
+                   <p>Click this link to get access the our Premium content today.</p>
+                   <p><a href="[ph]title_url[/ph]/giftredeem?gift_code=>>Purchase.GiftCode<<">Get access to the Premium content NOW</a></p>
+                   <p>Alternatively you can visit <a href="[ph]title_url[/ph]/giftredeem">[ph]title_url[/ph]/giftredeem</a> and enter your unique Premium Subscriber Code.</p>
+                   <p>Your unique <strong>Premium Subscriber Code</strong> is: >>Purchase.GiftCode<<.</p>
+                </div>
+            <p>Regards,</p>
+            <p>[ph]title_name[/ph] Team.</p>
+            </div>
+
+>>Footer<<
+
+        </div>
+    </body>
+</html>

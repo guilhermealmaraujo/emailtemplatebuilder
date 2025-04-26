@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html>
+    <head>
+       <!-- CSS Styling here -->
+       <style>
+            .fp-et-wrap {
+                margin-left: auto;
+                margin-right: auto;
+                max-width: 600px;
+            }
+            .fp-et-content {
+                margin-bottom: 30px;
+                font-size: 15px;
+                border-bottom: 1px solid lightgray;
+                padding-bottom: 10px;
+            }
+            .fp-et-content p {
+                margin-bottom: 20px !important;
+                font-size: 13px;
+                mso-line-height-rule: exactly;
+                line-height: 24px;
+                font-family: Helvetica Neue, Arial, sans-serif;
+            }
+            .fp-subscription-details {
+                margin-bottom: 20px !important;
+            }
+            .fp-subscription-details div {
+                display: flex;
+            }
+            .fp-subscription-details div p {
+                width: 150px;
+                margin-left: 20px;
+                margin-bottom: 5px !important;
+                margin-top: 0px;
+            }
+            .fp-subscription-details div span {
+                font-size: 13px;
+                mso-line-height-rule: exactly;
+                line-height: 24px;
+                font-family: Helvetica Neue, Arial, sans-serif;
+                font-weight: bold;
+            }
+            .fp-et-content div p span {
+                margin-left: 20px;
+            }
+            .fp-et-content p a {
+                color: #308ac5 !important;
+                text-decoration: underline !important;
+            }
+            #fp-email-within{
+                 margin: 0px 0px 20px 20px;
+                 border: 1px solid lightgrey;
+                 padding: 15px 15px 0px 15px;
+                 border-radius: 10px;
+            }
+            .fp-red-button {
+                  text-align:center;
+             }
+            .fp-red-button a {
+	          background: #b30007;
+                  border: 1px solid #e5e5e5;
+                  color: #ffffff;
+                  padding: 10px 15px;
+                  font-weight: 400;
+                  width: 100px;       
+            }
+        </style>
+    </head>
+    <body>
+        <div class="fp-et-wrap">
+
+>>Header<<
+
+          <div class="fp-et-content">
+                <p><strong>Dear >>Customer.Name<< </strong>,</p>
+                <p>
+                    We noticed that your >>Card.Brand<< ending in >>Card.Last4<< will expire at the end of this month. Please update your card details so your subscription to
+                    <a href="[ph]title_url[/ph]/?mcc=subscriptions&mca=update_payment_method" target="_blank">[ph]title_name[/ph]</a> can continue. If you have already updated your Tri-County News account with your new card details, please disregard this email.
+                </p>
+                <p>
+                    If you do not update your payment details, we will be unable to charge your payment and you may lose access to your subscription. Please log into
+                    <a target="_blank" href="[ph]title_url[/ph]/">[ph]title_domain_name[/ph]</a> and in your account settings, update your payment details.
+                </p>
+                <p>Regards,</p>
+            <p>[ph]title_name[/ph] Team.</p>
+
+                 <div class="fp-red-button" style="text-align: center; margin-bottom:10px"><a href="[ph]title_url[/ph]/?mcc=subscriptions&mca=update_payment_method" target="_blank">Update Payment Details</a> 
+               </div>
+            </div>
+
+>>Footer<<
+
+        </div>
+    </body>
+</html>
