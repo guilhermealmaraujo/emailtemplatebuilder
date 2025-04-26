@@ -202,6 +202,12 @@ button:hover {
 }
 
 /* Responsive Design */
+@media (max-width: 1000px) {
+    .form-row {
+        display: block;
+    }
+}
+
 @media (max-width: 768px) {
     .main-layout {
         flex-direction: column;
