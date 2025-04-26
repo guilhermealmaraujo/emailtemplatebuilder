@@ -6,6 +6,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const applyButton = document.getElementById('applyButton');
     const configNameInput = document.getElementById('config_name');
     const savedConfigsSelect = document.getElementById('saved_configs');
+    const deleteConfigButton = document.getElementById('deleteConfigButton');
 
     // Template selection elements
     const dropdownHeader = document.getElementById('dropdownHeader');
@@ -54,9 +55,10 @@ document.addEventListener('DOMContentLoaded', function() {
             contact_url: document.getElementById('contact_url').value,
             privacy_url: document.getElementById('privacy_url').value,
             terms_url: document.getElementById('terms_url').value,
-            subscribe_page_link: document.getElementById('subscribe_page_link').value,
-            template: templateSelect.value
+            subscribe_page_link: document.getElementById('subscribe_page_link').value
         };
+
+        console.log('Saving configuration:', formData); // Debug log
 
         // Save to localStorage
         localStorage.setItem(`email_template_config_${configName}`, JSON.stringify(formData));
@@ -78,25 +80,45 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        // Get the saved configuration
-        const savedConfig = JSON.parse(localStorage.getItem(`email_template_config_${selectedConfig}`));
-        
-        // Apply values to form fields
-        document.getElementById('title_name').value = savedConfig.title_name || '';
-        document.getElementById('title_url').value = savedConfig.title_url || '';
-        document.getElementById('title_domain_name').value = savedConfig.title_domain_name || '';
-        document.getElementById('customer_service_email').value = savedConfig.customer_service_email || '';
-        document.getElementById('address').value = savedConfig.address || '';
-        document.getElementById('logo_url').value = savedConfig.logo_url || '';
-        document.getElementById('twitter_url').value = savedConfig.twitter_url || '';
-        document.getElementById('facebook_url').value = savedConfig.facebook_url || '';
-        document.getElementById('contact_url').value = savedConfig.contact_url || '';
-        document.getElementById('privacy_url').value = savedConfig.privacy_url || '';
-        document.getElementById('terms_url').value = savedConfig.terms_url || '';
-        document.getElementById('subscribe_page_link').value = savedConfig.subscribe_page_link || '';
-        templateSelect.value = savedConfig.template || '';
-        
-        alert(`Configuration "${selectedConfig}" applied successfully!`);
+        try {
+            // Get the saved configuration
+            const savedConfigStr = localStorage.getItem(`email_template_config_${selectedConfig}`);
+            if (!savedConfigStr) {
+                throw new Error('Configuration not found');
+            }
+
+            const savedConfig = JSON.parse(savedConfigStr);
+            console.log('Loading configuration:', savedConfig); // Debug log
+            
+            // Apply values to form fields
+            const fields = [
+                'title_name',
+                'title_url',
+                'title_domain_name',
+                'customer_service_email',
+                'address',
+                'logo_url',
+                'twitter_url',
+                'facebook_url',
+                'contact_url',
+                'privacy_url',
+                'terms_url',
+                'subscribe_page_link'
+            ];
+
+            fields.forEach(field => {
+                const element = document.getElementById(field);
+                if (element && savedConfig[field] !== undefined) {
+                    element.value = savedConfig[field];
+                    console.log(`Setting ${field} to:`, savedConfig[field]); // Debug log
+                }
+            });
+            
+            alert(`Configuration "${selectedConfig}" applied successfully!`);
+        } catch (error) {
+            console.error('Error applying configuration:', error);
+            alert(`Error applying configuration: ${error.message}`);
+        }
     });
 
     // Load saved configurations when the page loads
@@ -231,6 +253,30 @@ document.addEventListener('DOMContentLoaded', function() {
                 errorSection.innerHTML = `<div class="error">Error loading template ${template}: ${error.message}</div>`;
                 previewContent.appendChild(errorSection);
             }
+        }
+    });
+
+    // Update delete button state based on selection
+    savedConfigsSelect.addEventListener('change', () => {
+        deleteConfigButton.disabled = !savedConfigsSelect.value;
+    });
+
+    // Handle configuration deletion
+    deleteConfigButton.addEventListener('click', () => {
+        const selectedConfig = savedConfigsSelect.value;
+        if (!selectedConfig) {
+            alert('Please select a configuration to delete');
+            return;
+        }
+
+        if (confirm(`Are you sure you want to delete the configuration "${selectedConfig}"?`)) {
+            // Remove from localStorage
+            localStorage.removeItem(`email_template_config_${selectedConfig}`);
+            
+            // Update the dropdown
+            loadSavedConfigurations();
+            
+            alert(`Configuration "${selectedConfig}" deleted successfully!`);
         }
     });
 });
