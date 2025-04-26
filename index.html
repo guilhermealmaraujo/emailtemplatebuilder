@@ -151,7 +151,18 @@
 
                 <div id="preview" class="preview-container">
                     <h2>Preview</h2>
-                    <div id="previewContent"></div>
+                    <div class="preview-tabs">
+                        <button class="tab-button active" data-tab="rendered">Rendered HTML</button>
+                        <button class="tab-button" data-tab="code">Raw HTML</button>
+                    </div>
+                    <div class="tab-content">
+                        <div id="renderedPreview" class="tab-pane active">
+                            <div id="previewContent"></div>
+                        </div>
+                        <div id="codePreview" class="tab-pane">
+                            <pre id="codeContent"></pre>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>

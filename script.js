@@ -17,6 +17,23 @@ document.addEventListener('DOMContentLoaded', function() {
     // Set to store selected template values
     const selectedTemplateValues = new Set();
 
+    // Tab switching functionality
+    const tabButtons = document.querySelectorAll('.tab-button');
+    const tabPanes = document.querySelectorAll('.tab-pane');
+
+    tabButtons.forEach(button => {
+        button.addEventListener('click', () => {
+            // Remove active class from all buttons and panes
+            tabButtons.forEach(btn => btn.classList.remove('active'));
+            tabPanes.forEach(pane => pane.classList.remove('active'));
+
+            // Add active class to clicked button and corresponding pane
+            button.classList.add('active');
+            const tabId = button.getAttribute('data-tab');
+            document.getElementById(tabId + 'Preview').classList.add('active');
+        });
+    });
+
     // Load saved configurations into the dropdown
     function loadSavedConfigurations() {
         savedConfigsSelect.innerHTML = '<option value="">Select a saved configuration...</option>';
@@ -220,6 +237,7 @@ document.addEventListener('DOMContentLoaded', function() {
         }
 
         previewContent.innerHTML = '';
+        let allRawHtml = '';
 
         // Process each selected template
         for (const template of selectedTemplateValues) {
@@ -229,11 +247,15 @@ document.addEventListener('DOMContentLoaded', function() {
                     throw new Error(`HTTP error! status: ${response.status}`);
                 }
                 let html = await response.text();
+                
+                // Log the raw HTML content
+                console.log(`Raw HTML from ${template}:`, html);
 
                 // Replace all placeholders with form values
                 for (const [key, value] of Object.entries(formData)) {
                     const placeholder = `\\[ph\\]${key}\\[/ph\\]`; // Escape special regex characters
-                    html = html.replace(new RegExp(placeholder, 'g'), value || ''); // Handle undefined values
+                    const regex = new RegExp(placeholder, 'g');
+                    html = html.replace(regex, value || ''); // Handle undefined values
                 }
 
                 // Create template section
@@ -246,6 +268,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 `;
                 previewContent.appendChild(templateSection);
 
+                // Add to raw HTML collection
+                allRawHtml += `<!-- Template: ${template} -->\n${html}\n\n`;
+
             } catch (error) {
                 console.error('Error:', error);
                 const errorSection = document.createElement('div');
@@ -254,6 +279,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 previewContent.appendChild(errorSection);
             }
         }
+
+        // Update the raw HTML preview
+        document.getElementById('codeContent').textContent = allRawHtml;
     });
 
     // Update delete button state based on selection
@@ -279,6 +307,15 @@ document.addEventListener('DOMContentLoaded', function() {
             alert(`Configuration "${selectedConfig}" deleted successfully!`);
         }
     });
+
+    // Update the processTemplate function to also update the code preview
+    async function processTemplate() {
+        // ... existing code ...
+
+        // After processing the template, update both previews
+        document.getElementById('previewContent').innerHTML = processedTemplate;
+        document.getElementById('codeContent').textContent = processedTemplate;
+    }
 });
 
 // Copy to clipboard function
