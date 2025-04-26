@@ -140,7 +140,7 @@ select {
     margin-bottom: 0;
 }
 
-.save-container input {
+.save-container input, .template-selection-input-wrapper select, .saved-configs-select {
     height: 42px;
     padding: 8px 12px;
     box-sizing: border-box;
@@ -202,7 +202,7 @@ button:hover {
 }
 
 /* Responsive Design */
-@media (max-width: 1200px) {
+@media (max-width: 768px) {
     .main-layout {
         flex-direction: column;
     }
@@ -214,6 +214,7 @@ button:hover {
 
     .right-column {
         position: static;
+        align-self: unset;
     }
 
     #previewContent {
@@ -226,7 +227,7 @@ button:hover {
     }
 }
 
-@media (max-width: 768px) {
+@media (max-width: 400px) {
     .container {
         padding: 15px;
     }
@@ -241,6 +242,10 @@ button:hover {
 
     button {
         width: 100%;
+    }
+
+    .template-selection-input-wrapper {
+        flex-direction: column;
     }
 }
 
