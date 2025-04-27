@@ -31,7 +31,7 @@
     },
     "GracePeriodFinishedNotification": {
         "EmailType": "Grace Period Finished Notification",
-        "Subject": "Grace Period Finished Notification",
+        "Subject": "Your Grace Period Has Ended",
         "FileName": "GracePeriodFinishedNotification.html"
     },
     "GracePeriodNotification": {
@@ -45,23 +45,23 @@
         "FileName": "Header.html"
     },
     "MinusFourteenDayManualRenewalNotification": {
-        "EmailType": "Minus 14 Days Manual Renewal Notification",
-        "Subject": "Minus 14 Days Manual Renewal Notification",
+        "EmailType": "Minus Fourteen Days Manual Renewal Notification",
+        "Subject": "Your Subscription Will Renew in 14 Days",
         "FileName": "MinusFourteenDayManualRenewalNotification.html"
     },
     "MinusSevenDayManualRenewalNotification": {
-        "EmailType": "Minus 7 Days Manual Renewal Notification",
-        "Subject": "Minus 7 Days Manual Renewal Notification",
+        "EmailType": "Minus Seven Days Manual Renewal Notification",
+        "Subject": "Your Subscription Will Renew in 7 Days",
         "FileName": "MinusSevenDayManualRenewalNotification.html"
     },
     "MinusFourteenDayRenewalNotification": {
-        "EmailType": "Minus 14 Days Before Renewal Notification",
-        "Subject": "Minus 14 Days Before Renewal Notification",
+        "EmailType": "Minus Fourteen Days Renewal Notification",
+        "Subject": "Your Subscription Will Renew in 14 Days",
         "FileName": "MinusFourteenDayRenewalNotification.html"
     },
     "MinusSevenDayRenewalNotification": {
-        "EmailType": "Minus 7 Days Before Renewal Notification",
-        "Subject": "Minus 7 Days Before Renewal Notification",
+        "EmailType": "Minus Seven Days Renewal Notification",
+        "Subject": "Your Subscription Will Renew in 14 Days",
         "FileName": "MinusSevenDayRenewalNotification.html"
     },
     "PurchaseConfirmation": {
