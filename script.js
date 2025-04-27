@@ -244,6 +244,15 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
 
+    // Load templates.json data
+    let templatesData = {};
+    fetch('templates.json')
+        .then(response => response.json())
+        .then(data => {
+            templatesData = data;
+        })
+        .catch(error => console.error('Error loading templates.json:', error));
+
     // Process templates
     processButton.addEventListener('click', async function() {
         if (selectedTemplateValues.size === 0) {
@@ -311,11 +320,17 @@ document.addEventListener('DOMContentLoaded', function() {
                 // Store the original HTML in a data attribute
                 accordionItem.setAttribute('data-html', html);
                 
+                // Get template data from templates.json
+                const templateName = template.replace('.html', '');
+                const templateData = templatesData[templateName] || {};
+                
                 accordionItem.innerHTML = `
                     <div class="accordion-header">
                         <div class="accordion-title">${template}</div>
                         <div class="accordion-actions">
                             <button class="copy-button" data-template="${template}">Copy Raw HTML</button>
+                            <button class="copy-email-type-button" data-template="${template}">Copy Email Type</button>
+                            <button class="copy-subject-button" data-template="${template}">Copy Subject</button>
                             <button class="remove-button" data-template="${template}">×</button>
                             <div class="accordion-arrow">▼</div>
                         </div>
@@ -405,8 +420,72 @@ document.addEventListener('DOMContentLoaded', function() {
                     copyButton.classList.add('copied');
                     
                     setTimeout(() => {
-                        copyButton.textContent = 'Copy to Clipboard';
+                        copyButton.textContent = 'Copy Raw HTML';
                         copyButton.classList.remove('copied');
+                    }, 2000);
+                });
+
+                // Add event listener for the copy email type button
+                const copyEmailTypeButton = accordionItem.querySelector('.copy-email-type-button');
+                copyEmailTypeButton.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevent accordion toggle
+                    
+                    const templateName = template.replace('.html', '');
+                    const emailType = templatesData[templateName]?.EmailType || 'Email Type not found';
+                    
+                    // Create a temporary textarea element
+                    const textarea = document.createElement('textarea');
+                    textarea.value = emailType;
+                    textarea.style.position = 'fixed';
+                    textarea.style.opacity = '0';
+                    document.body.appendChild(textarea);
+                    
+                    // Select and copy the text
+                    textarea.select();
+                    document.execCommand('copy');
+                    
+                    // Remove the temporary textarea
+                    document.body.removeChild(textarea);
+                    
+                    // Show feedback
+                    copyEmailTypeButton.textContent = 'Copied!';
+                    copyEmailTypeButton.classList.add('copied');
+                    
+                    setTimeout(() => {
+                        copyEmailTypeButton.textContent = 'Copy Email Type';
+                        copyEmailTypeButton.classList.remove('copied');
+                    }, 2000);
+                });
+
+                // Add event listener for the copy subject button
+                const copySubjectButton = accordionItem.querySelector('.copy-subject-button');
+                copySubjectButton.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevent accordion toggle
+                    
+                    const templateName = template.replace('.html', '');
+                    const subject = templatesData[templateName]?.Subject || 'Subject not found';
+                    
+                    // Create a temporary textarea element
+                    const textarea = document.createElement('textarea');
+                    textarea.value = subject;
+                    textarea.style.position = 'fixed';
+                    textarea.style.opacity = '0';
+                    document.body.appendChild(textarea);
+                    
+                    // Select and copy the text
+                    textarea.select();
+                    document.execCommand('copy');
+                    
+                    // Remove the temporary textarea
+                    document.body.removeChild(textarea);
+                    
+                    // Show feedback
+                    copySubjectButton.textContent = 'Copied!';
+                    copySubjectButton.classList.add('copied');
+                    
+                    setTimeout(() => {
+                        copySubjectButton.textContent = 'Copy Subject';
+                        copySubjectButton.classList.remove('copied');
                     }, 2000);
                 });
 

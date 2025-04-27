@@ -1,0 +1,67 @@
+{
+    "AbandonedCart": {
+        "EmailType": "Abandoned Cart",
+        "Subject": "Abandoned Cart",
+        "FileName": "AbandonedCart.html"
+    },
+    "CancellationConfirmation": {
+        "EmailType": "Cancellation Confirmation",
+        "Subject": "Subscription Cancellation Confirmation",
+        "FileName": "CancellationConfirmation.html"
+    },
+    "GiftPurchaseConfirmation": {
+        "EmailType": "Gift Purchase Confirmation",
+        "Subject": "Gift Subscription Purchase Confirmation",
+        "FileName": "GiftPurchaseConfirmation.html"
+    },
+    "GiftRedeemedConfirmation": {
+        "EmailType": "Gift Redeemed Confirmation",
+        "Subject": "Gift Subscription Redeemed",
+        "FileName": "GiftRedeemedConfirmation.html"
+    },
+    "GracePeriodFinishedNotification": {
+        "EmailType": "Grace Period Finished Notification",
+        "Subject": "Subscription Access Ended",
+        "FileName": "GracePeriodFinishedNotification.html"
+    },
+    "GracePeriodNotification": {
+        "EmailType": "Grace Period Notification",
+        "Subject": "Payment Failed - Grace Period Started",
+        "FileName": "GracePeriodNotification.html"
+    },
+    "MinusFourteenDayRenewalNotification": {
+        "EmailType": "14 Days Before Renewal Notification",
+        "Subject": "Your subscription will renew in 14 days",
+        "FileName": "MinusFourteenDayRenewalNotification.html"
+    },
+    "MinusSevenDayRenewalNotification": {
+        "EmailType": "7 Days Before Renewal Notification",
+        "Subject": "Your subscription will renew in 7 days",
+        "FileName": "MinusSevenDayRenewalNotification.html"
+    },
+    "PurchaseConfirmation": {
+        "EmailType": "Purchase Confirmation",
+        "Subject": "Welcome to Your New Subscription",
+        "FileName": "PurchaseConfirmation.html"
+    },
+    "RefundAndCancellationConfirmation": {
+        "EmailType": "Refund and Cancellation Confirmation",
+        "Subject": "Subscription Refund and Cancellation Confirmation",
+        "FileName": "RefundAndCancellationConfirmation.html"
+    },
+    "RegistrationConfirmation": {
+        "EmailType": "Registration Confirmation",
+        "Subject": "Welcome to Your Account",
+        "FileName": "RegistrationConfirmation.html"
+    },
+    "RenewalConfirmation": {
+        "EmailType": "Renewal Confirmation",
+        "Subject": "Subscription Renewal Confirmation",
+        "FileName": "RenewalConfirmation.html"
+    },
+    "UpgradeConfirmation": {
+        "EmailType": "Upgrade Confirmation",
+        "Subject": "Subscription Upgrade Confirmation",
+        "FileName": "UpgradeConfirmation.html"
+    }
+} 
