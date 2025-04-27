@@ -9,6 +9,16 @@
         "Subject": "Cancellation Confirmation",
         "FileName": "CancellationConfirmation.html"
     },
+    "CardExpirationNotification": {
+        "EmailType": "Card Expiration Notification",
+        "Subject": "Card Expiration Notification",
+        "FileName": "CardExpirationNotification.html"
+    },
+    "Footer": {
+        "EmailType": "Footer",
+        "Subject": "Footer",
+        "FileName": "Footer.html"
+    },
     "GiftPurchaseConfirmation": {
         "EmailType": "Gift Purchase Confirmation",
         "Subject": "Gift Purchase Confirmation",
@@ -28,6 +38,21 @@
         "EmailType": "Grace Period Notification",
         "Subject": "Grace Period Notification",
         "FileName": "GracePeriodNotification.html"
+    },
+    "Header": {
+        "EmailType": "Header",
+        "Subject": "Header",
+        "FileName": "Header.html"
+    },
+    "MinusFourteenDayManualRenewalNotification": {
+        "EmailType": "Minus 14 Days Manual Renewal Notification",
+        "Subject": "Minus 14 Days Manual Renewal Notification",
+        "FileName": "MinusFourteenDayManualRenewalNotification.html"
+    },
+    "MinusSevenDayManualRenewalNotification": {
+        "EmailType": "Minus 7 Days Manual Renewal Notification",
+        "Subject": "Minus 7 Days Manual Renewal Notification",
+        "FileName": "MinusSevenDayManualRenewalNotification.html"
     },
     "MinusFourteenDayRenewalNotification": {
         "EmailType": "Minus 14 Days Before Renewal Notification",
@@ -49,6 +74,11 @@
         "Subject": "Refund and Cancellation Confirmation",
         "FileName": "RefundAndCancellationConfirmation.html"
     },
+    "RefundConfirmation": {
+        "EmailType": "Refund Confirmation",
+        "Subject": "Refund Confirmation",
+        "FileName": "RefundConfirmation.html"
+    },
     "RegistrationConfirmation": {
         "EmailType": "Registration Confirmation",
         "Subject": "Registration Confirmation",
@@ -58,6 +88,16 @@
         "EmailType": "Renewal Confirmation",
         "Subject": "Renewal Confirmation",
         "FileName": "RenewalConfirmation.html"
+    },
+    "ResetPassword": {
+        "EmailType": "Reset Password",
+        "Subject": "Reset Password",
+        "FileName": "ResetPassword.html"
+    },
+    "ResetPasswordSocial": {
+        "EmailType": "Reset Password Social",
+        "Subject": "Reset Password Social",
+        "FileName": "ResetPasswordSocial.html"
     },
     "UpgradeConfirmation": {
         "EmailType": "Upgrade Confirmation",
