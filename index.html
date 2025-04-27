@@ -109,59 +109,52 @@
                         <div class="selected-templates" id="selectedTemplates">
                             <!-- Selected templates will appear here as tags -->
                         </div>
-                        <div class="dropdown">
-                            <div class="dropdown-header" id="dropdownHeader">
-                                <span class="selected-text">Select templates...</span>
-                                <span class="dropdown-arrow">▼</span>
-                            </div>
-                            <div class="dropdown-content" id="dropdownContent">
-                                <div class="dropdown-search">
-                                    <input type="text" id="templateSearch" placeholder="Search templates...">
+                        <div class="dropdown-container">
+                            <div class="dropdown">
+                                <div class="dropdown-header" id="dropdownHeader">
+                                    <span class="selected-text">Select templates...</span>
+                                    <span class="dropdown-arrow">▼</span>
                                 </div>
-                                <div class="dropdown-list">
-                                    <div class="dropdown-item" data-value="AbandonedCart.html">Abandoned Cart</div>
-                                    <div class="dropdown-item" data-value="CancellationConfirmation.html">Cancellation Confirmation</div>
-                                    <div class="dropdown-item" data-value="CardExpirationNotification.html">Card Expiration Notification</div>
-                                    <div class="dropdown-item" data-value="Footer.html">Footer Component</div>
-                                    <div class="dropdown-item" data-value="GiftPurchaseConfirmation.html">Gift Purchase Confirmation</div>
-                                    <div class="dropdown-item" data-value="GiftRedeemedConfirmation.html">Gift Redeemed Confirmation</div>
-                                    <div class="dropdown-item" data-value="GracePeriodNotification.html">Grace Period Notification</div>
-                                    <div class="dropdown-item" data-value="GracePeriodFinishedNotification.html">Grace Period Finished Notification</div>
-                                    <div class="dropdown-item" data-value="Header.html">Header Component</div>
-                                    <div class="dropdown-item" data-value="MinusFourteenDayRenewalNotification.html">14 Days Before Renewal</div>
-                                    <div class="dropdown-item" data-value="MinusFourteenDayManualRenewalNotification.html">14 Days Before Manual Renewal</div>
-                                    <div class="dropdown-item" data-value="MinusSevenDayRenewalNotification.html">7 Days Before Renewal</div>
-                                    <div class="dropdown-item" data-value="MinusSevenDayManualRenewalNotification.html">7 Days Before Manual Renewal</div>
-                                    <div class="dropdown-item" data-value="PurchaseConfirmation.html">Purchase Confirmation</div>
-                                    <div class="dropdown-item" data-value="RefundConfirmation.html">Refund Confirmation</div>
-                                    <div class="dropdown-item" data-value="RefundAndCancellationConfirmation.html">Refund and Cancellation Confirmation</div>
-                                    <div class="dropdown-item" data-value="RegistrationConfirmation.html">Registration Confirmation</div>
-                                    <div class="dropdown-item" data-value="RenewalConfirmation.html">Renewal Confirmation</div>
-                                    <div class="dropdown-item" data-value="ResetPassword.html">Reset Password</div>
-                                    <div class="dropdown-item" data-value="ResetPasswordSocial.html">Reset Password Social</div>
-                                    <div class="dropdown-item" data-value="UpgradeConfirmation.html">Upgrade Confirmation</div>
+                                <div class="dropdown-content" id="dropdownContent">
+                                    <div class="dropdown-search">
+                                        <input type="text" id="templateSearch" placeholder="Search templates...">
+                                    </div>
+                                    <div class="dropdown-list">
+                                        <div class="dropdown-item" data-value="AbandonedCart.html">Abandoned Cart</div>
+                                        <div class="dropdown-item" data-value="CancellationConfirmation.html">Cancellation Confirmation</div>
+                                        <div class="dropdown-item" data-value="CardExpirationNotification.html">Card Expiration Notification</div>
+                                        <div class="dropdown-item" data-value="Footer.html">Footer Component</div>
+                                        <div class="dropdown-item" data-value="GiftPurchaseConfirmation.html">Gift Purchase Confirmation</div>
+                                        <div class="dropdown-item" data-value="GiftRedeemedConfirmation.html">Gift Redeemed Confirmation</div>
+                                        <div class="dropdown-item" data-value="GracePeriodNotification.html">Grace Period Notification</div>
+                                        <div class="dropdown-item" data-value="GracePeriodFinishedNotification.html">Grace Period Finished Notification</div>
+                                        <div class="dropdown-item" data-value="Header.html">Header Component</div>
+                                        <div class="dropdown-item" data-value="MinusFourteenDayRenewalNotification.html">Minus 14 Days Before Renewal</div>
+                                        <div class="dropdown-item" data-value="MinusFourteenDayManualRenewalNotification.html">Minus 14 Days Before Manual Renewal</div>
+                                        <div class="dropdown-item" data-value="MinusSevenDayRenewalNotification.html">Minus 7 Days Before Renewal</div>
+                                        <div class="dropdown-item" data-value="MinusSevenDayManualRenewalNotification.html">Minus 7 Days Before Manual Renewal</div>
+                                        <div class="dropdown-item" data-value="PurchaseConfirmation.html">Purchase Confirmation</div>
+                                        <div class="dropdown-item" data-value="RefundConfirmation.html">Refund Confirmation</div>
+                                        <div class="dropdown-item" data-value="RefundAndCancellationConfirmation.html">Refund and Cancellation Confirmation</div>
+                                        <div class="dropdown-item" data-value="RegistrationConfirmation.html">Registration Confirmation</div>
+                                        <div class="dropdown-item" data-value="RenewalConfirmation.html">Renewal Confirmation</div>
+                                        <div class="dropdown-item" data-value="ResetPassword.html">Reset Password</div>
+                                        <div class="dropdown-item" data-value="ResetPasswordSocial.html">Reset Password Social</div>
+                                        <div class="dropdown-item" data-value="UpgradeConfirmation.html">Upgrade Confirmation</div>
+                                    </div>
                                 </div>
                             </div>
-                        </div>
-                        <div class="button-container">
-                            <button id="processButton">Process Template</button>
+                            <div class="button-container">
+                                <button id="processButton">Process Template</button>
+                            </div>
                         </div>
                     </div>
                 </div>
 
                 <div id="preview" class="preview-container">
-                    <h2>Preview</h2>
-                    <div class="preview-tabs">
-                        <button class="tab-button active" data-tab="rendered">Rendered HTML</button>
-                        <button class="tab-button" data-tab="code">Raw HTML</button>
-                    </div>
-                    <div class="tab-content">
-                        <div id="renderedPreview" class="tab-pane active">
-                            <div id="previewContent"></div>
-                        </div>
-                        <div id="codePreview" class="tab-pane">
-                            <pre id="codeContent"></pre>
-                        </div>
+                    <h2>Output</h2>
+                    <div id="templateAccordion" class="template-accordion">
+                        <!-- Template accordion items will be added here dynamically -->
                     </div>
                 </div>
             </div>

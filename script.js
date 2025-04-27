@@ -75,8 +75,6 @@ document.addEventListener('DOMContentLoaded', function() {
             subscribe_page_link: document.getElementById('subscribe_page_link').value
         };
 
-        console.log('Saving configuration:', formData); // Debug log
-
         // Save to localStorage
         localStorage.setItem(`email_template_config_${configName}`, JSON.stringify(formData));
         
@@ -105,7 +103,6 @@ document.addEventListener('DOMContentLoaded', function() {
             }
 
             const savedConfig = JSON.parse(savedConfigStr);
-            console.log('Loading configuration:', savedConfig); // Debug log
             
             // Apply values to form fields
             const fields = [
@@ -127,11 +124,9 @@ document.addEventListener('DOMContentLoaded', function() {
                 const element = document.getElementById(field);
                 if (element && savedConfig[field] !== undefined) {
                     element.value = savedConfig[field];
-                    console.log(`Setting ${field} to:`, savedConfig[field]); // Debug log
                 }
             });
             
-            alert(`Configuration "${selectedConfig}" applied successfully!`);
         } catch (error) {
             console.error('Error applying configuration:', error);
             alert(`Error applying configuration: ${error.message}`);
@@ -236,8 +231,9 @@ document.addEventListener('DOMContentLoaded', function() {
             return;
         }
 
-        previewContent.innerHTML = '';
-        let allRawHtml = '';
+        // Clear the accordion
+        const accordion = document.getElementById('templateAccordion');
+        accordion.innerHTML = '';
 
         // Process each selected template
         for (const template of selectedTemplateValues) {
@@ -248,9 +244,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 }
                 let html = await response.text();
                 
-                // Log the raw HTML content
-                console.log(`Raw HTML from ${template}:`, html);
-
                 // Replace all placeholders with form values
                 for (const [key, value] of Object.entries(formData)) {
                     const placeholder = `\\[ph\\]${key}\\[/ph\\]`; // Escape special regex characters
@@ -258,30 +251,142 @@ document.addEventListener('DOMContentLoaded', function() {
                     html = html.replace(regex, value || ''); // Handle undefined values
                 }
 
-                // Create template section
-                const templateSection = document.createElement('div');
-                templateSection.className = 'template-preview';
-                templateSection.innerHTML = `
-                    <h3>${template}</h3>
-                    <div class="preview-content">${html}</div>
-                    <button class="copy-button" onclick="copyToClipboard(this)">Copy to Clipboard</button>
+                // Create accordion item
+                const accordionItem = document.createElement('div');
+                accordionItem.className = 'accordion-item';
+                
+                // Escape HTML for display in the code tab
+                const escapedHtml = html
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;')
+                    .replace(/'/g, '&#039;');
+                
+                // Store the original HTML in a data attribute
+                accordionItem.setAttribute('data-html', html);
+                
+                accordionItem.innerHTML = `
+                    <div class="accordion-header">
+                        <div class="accordion-title">${template}</div>
+                        <div class="accordion-actions">
+                            <button class="copy-button" data-template="${template}">Copy to Clipboard</button>
+                            <button class="remove-button" data-template="${template}">×</button>
+                            <div class="accordion-arrow">▼</div>
+                        </div>
+                    </div>
+                    <div class="accordion-content">
+                        <div class="accordion-preview">
+                            <div class="accordion-preview-tabs">
+                                <button class="accordion-tab-button active" data-tab="rendered">Rendered HTML</button>
+                                <button class="accordion-tab-button" data-tab="code">Raw HTML</button>
+                            </div>
+                            <div class="accordion-tab-content">
+                                <div class="accordion-tab-pane active" data-pane="rendered">
+                                    <div class="preview-content">${html}</div>
+                                </div>
+                                <div class="accordion-tab-pane" data-pane="code">
+                                    <pre class="accordion-code-content">${escapedHtml}</pre>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 `;
-                previewContent.appendChild(templateSection);
+                
+                accordion.appendChild(accordionItem);
+                
+                // Add event listeners for the accordion item
+                const header = accordionItem.querySelector('.accordion-header');
+                const content = accordionItem.querySelector('.accordion-content');
+                const arrow = accordionItem.querySelector('.accordion-arrow');
+                
+                header.addEventListener('click', () => {
+                    // Close all other accordion items
+                    document.querySelectorAll('.accordion-content').forEach(item => {
+                        if (item !== content) {
+                            item.classList.remove('expanded');
+                            item.previousElementSibling.querySelector('.accordion-arrow').classList.remove('expanded');
+                        }
+                    });
+                    
+                    // Toggle the clicked item
+                    content.classList.toggle('expanded');
+                    arrow.classList.toggle('expanded');
+                });
+                
+                // Add event listeners for the tabs
+                const tabButtons = accordionItem.querySelectorAll('.accordion-tab-button');
+                const tabPanes = accordionItem.querySelectorAll('.accordion-tab-pane');
+                
+                tabButtons.forEach(button => {
+                    button.addEventListener('click', (e) => {
+                        e.stopPropagation(); // Prevent accordion toggle
+                        
+                        // Remove active class from all buttons and panes
+                        tabButtons.forEach(btn => btn.classList.remove('active'));
+                        tabPanes.forEach(pane => pane.classList.remove('active'));
+                        
+                        // Add active class to clicked button and corresponding pane
+                        button.classList.add('active');
+                        const tabId = button.getAttribute('data-tab');
+                        accordionItem.querySelector(`.accordion-tab-pane[data-pane="${tabId}"]`).classList.add('active');
+                    });
+                });
+                
+                // Add event listener for the copy button
+                const copyButton = accordionItem.querySelector('.copy-button');
+                copyButton.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevent accordion toggle
+                    
+                    // Get the original HTML from the data attribute
+                    const codeContent = accordionItem.getAttribute('data-html');
+                    
+                    // Create a temporary textarea element
+                    const textarea = document.createElement('textarea');
+                    textarea.value = codeContent;
+                    textarea.style.position = 'fixed';
+                    textarea.style.opacity = '0';
+                    document.body.appendChild(textarea);
+                    
+                    // Select and copy the text
+                    textarea.select();
+                    document.execCommand('copy');
+                    
+                    // Remove the temporary textarea
+                    document.body.removeChild(textarea);
+                    
+                    // Show feedback
+                    copyButton.textContent = 'Copied!';
+                    copyButton.classList.add('copied');
+                    
+                    setTimeout(() => {
+                        copyButton.textContent = 'Copy to Clipboard';
+                        copyButton.classList.remove('copied');
+                    }, 2000);
+                });
 
-                // Add to raw HTML collection
-                allRawHtml += `<!-- Template: ${template} -->\n${html}\n\n`;
+                // Add event listener for the remove button
+                const removeButton = accordionItem.querySelector('.remove-button');
+                removeButton.addEventListener('click', (e) => {
+                    e.stopPropagation(); // Prevent accordion toggle
+                    accordionItem.remove();
+                });
 
             } catch (error) {
                 console.error('Error:', error);
-                const errorSection = document.createElement('div');
-                errorSection.className = 'template-preview error';
-                errorSection.innerHTML = `<div class="error">Error loading template ${template}: ${error.message}</div>`;
-                previewContent.appendChild(errorSection);
+                const errorItem = document.createElement('div');
+                errorItem.className = 'accordion-item error';
+                errorItem.innerHTML = `
+                    <div class="accordion-header">
+                        <div class="accordion-title">${template}</div>
+                        <div class="accordion-actions">
+                            <div class="error-message">Error loading template: ${error.message}</div>
+                        </div>
+                    </div>
+                `;
+                accordion.appendChild(errorItem);
             }
         }
-
-        // Update the raw HTML preview
-        document.getElementById('codeContent').textContent = allRawHtml;
     });
 
     // Update delete button state based on selection
