@@ -315,7 +315,7 @@ document.addEventListener('DOMContentLoaded', function() {
                     <div class="accordion-header">
                         <div class="accordion-title">${template}</div>
                         <div class="accordion-actions">
-                            <button class="copy-button" data-template="${template}">Copy to Clipboard</button>
+                            <button class="copy-button" data-template="${template}">Copy Raw HTML</button>
                             <button class="remove-button" data-template="${template}">×</button>
                             <div class="accordion-arrow">▼</div>
                         </div>
