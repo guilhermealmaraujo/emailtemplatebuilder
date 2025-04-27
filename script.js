@@ -13,6 +13,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const dropdownContent = document.getElementById('dropdownContent');
     const templateSearch = document.getElementById('templateSearch');
     const selectedTemplates = document.getElementById('selectedTemplates');
+    const selectAllCheckbox = document.getElementById('selectAllTemplates');
 
     // Set to store selected template values
     const selectedTemplateValues = new Set();
@@ -159,7 +160,49 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Handle template selection
+    // Function to select/deselect all templates
+    function toggleAllTemplates(selectAll) {
+        const items = dropdownContent.querySelectorAll('.dropdown-item');
+        items.forEach(item => {
+            const value = item.dataset.value;
+            if (selectAll) {
+                if (!selectedTemplateValues.has(value)) {
+                    selectedTemplateValues.add(value);
+                    item.classList.add('selected');
+                    // Add template tag
+                    const tag = document.createElement('div');
+                    tag.className = 'template-tag';
+                    tag.innerHTML = `
+                        ${item.textContent}
+                        <span class="remove-tag" data-value="${value}">&times;</span>
+                    `;
+                    selectedTemplates.appendChild(tag);
+                }
+            } else {
+                selectedTemplateValues.delete(value);
+                item.classList.remove('selected');
+                // Remove template tag
+                const tag = selectedTemplates.querySelector(`.template-tag .remove-tag[data-value="${value}"]`)?.parentElement;
+                if (tag) {
+                    tag.remove();
+                }
+            }
+        });
+    }
+
+    // Add event listener for select all checkbox
+    selectAllCheckbox.addEventListener('change', (e) => {
+        toggleAllTemplates(e.target.checked);
+    });
+
+    // Update select all checkbox state when templates are manually selected/deselected
+    function updateSelectAllCheckbox() {
+        const items = dropdownContent.querySelectorAll('.dropdown-item');
+        const allSelected = Array.from(items).every(item => selectedTemplateValues.has(item.dataset.value));
+        selectAllCheckbox.checked = allSelected;
+    }
+
+    // Update the existing template selection handler
     dropdownContent.addEventListener('click', (e) => {
         const item = e.target.closest('.dropdown-item');
         if (!item) return;
@@ -181,9 +224,10 @@ document.addEventListener('DOMContentLoaded', function() {
             // Mark item as selected
             item.classList.add('selected');
         }
+        updateSelectAllCheckbox();
     });
 
-    // Handle tag removal
+    // Update the existing tag removal handler
     selectedTemplates.addEventListener('click', (e) => {
         if (e.target.classList.contains('remove-tag')) {
             const value = e.target.dataset.value;
@@ -196,6 +240,7 @@ document.addEventListener('DOMContentLoaded', function() {
             if (item) {
                 item.classList.remove('selected');
             }
+            updateSelectAllCheckbox();
         }
     });
 
