@@ -158,7 +158,6 @@ document.addEventListener('DOMContentLoaded', function() {
                 textarea.select();
                 try {
                     document.execCommand('copy');
-                    document.body.removeChild(textarea);
                     alert('Template copied to clipboard!');
                 } catch (err) {
                     console.error('Failed to copy text: ', err);
